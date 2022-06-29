@@ -161,5 +161,10 @@ public class HelloController implements Initializable {
         );
     }
 
+    @FXML
+    void logout(ActionEvent event) {
+        HelloApplication.user = null;
+        HelloApplication.sceneController.loadScreen("login", (Stage) container.getScene().getWindow());
+    }
 
 }
