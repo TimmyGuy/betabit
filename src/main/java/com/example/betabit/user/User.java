@@ -1,5 +1,6 @@
 package com.example.betabit.user;
 
+import com.example.betabit.container.Container;
 import com.example.betabit.container.PictureContainer;
 import com.example.betabit.container.ProfileContainer;
 import com.example.betabit.transport.TravelPreference;
@@ -23,6 +24,7 @@ public class User {
     private PictureContainer pictureContainer;
     private ProfileContainer profileContainer;
     private TravelPreference travelPreference;
+    private ArrayList<Container> containers = new ArrayList<>();
 
     public User() {
     }
@@ -65,6 +67,8 @@ public class User {
         this.pictureContainer = pictureContainer;
         this.profileContainer = profileContainer;
         this.travelPreference = travelPreference;
+        this.containers.add(profileContainer);
+        this.containers.add(pictureContainer);
     }
 
     public String getFullName() {
@@ -164,5 +168,17 @@ public class User {
             }
         }
         return position;
+    }
+
+    public ArrayList<Container> getContainers() {
+        return containers;
+    }
+
+    public void addContainer(Container container) {
+        containers.add(container);
+    }
+
+    public void setContainers(ArrayList<Container> containers) {
+        this.containers = containers;
     }
 }

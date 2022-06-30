@@ -150,11 +150,11 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView prefHeight="532.0" prefWidth="527.0">
+                                    <TableView fx:id="storeTable" prefHeight="532.0" prefWidth="527.0">
                                       <columns>
-                                        <TableColumn prefWidth="355.0" text="Naam" />
-                                        <TableColumn minWidth="0.0" text="Punten" />
-                                          <TableColumn prefWidth="91.0" text="Badges" />
+                                        <TableColumn fx:id="productNameColumn" prefWidth="355.0" text="Naam" />
+                                        <TableColumn fx:id="productPointsColumn" minWidth="0.0" text="Punten" />
+                                          <TableColumn fx:id="badgesColumn" prefWidth="91.0" text="Badges" />
                                       </columns>
                                     </TableView>
                                  </children>

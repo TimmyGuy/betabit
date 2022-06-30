@@ -1,22 +1,24 @@
 package com.example.betabit.container;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.paint.Color;
 
 public abstract class Container {
     private int id;
-    private String name;
+    private SimpleStringProperty name;
     private Color color;
     private int borderWidth;
-    private int pricePoints;
-    private int priceBadges;
+    private SimpleIntegerProperty pricePoints;
+    private SimpleIntegerProperty priceBadges;
 
     public Container(int id, String name, Color color, int borderWidth, int pricePoints, int priceBadges) {
         this.id = id;
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.color = color;
         this.borderWidth = borderWidth;
-        this.pricePoints = pricePoints;
-        this.priceBadges = priceBadges;
+        this.pricePoints = new SimpleIntegerProperty(pricePoints);
+        this.priceBadges = new SimpleIntegerProperty(priceBadges);
     }
 
     public int getId() {
@@ -28,11 +30,11 @@ public abstract class Container {
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
     }
 
     public Color getColor() {
@@ -52,18 +54,18 @@ public abstract class Container {
     }
 
     public int getPricePoints() {
-        return pricePoints;
+        return pricePoints.get();
     }
 
     public void setPricePoints(int pricePoints) {
-        this.pricePoints = pricePoints;
+        this.pricePoints = new SimpleIntegerProperty(pricePoints);
     }
 
     public int getPriceBadges() {
-        return priceBadges;
+        return priceBadges.get();
     }
 
     public void setPriceBadges(int priceBadges) {
-        this.priceBadges = priceBadges;
+        this.priceBadges = new SimpleIntegerProperty(priceBadges);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.betabit;
 
+import com.example.betabit.container.Container;
 import com.example.betabit.log.Log;
 import com.example.betabit.store.Store;
 import com.example.betabit.transport.Transport;
@@ -94,6 +95,18 @@ public class HelloController implements Initializable, Observer {
     private ComboBox<Transport> vehicleDropdown;
 
     @FXML
+    private TableView<Container> storeTable;
+
+    @FXML
+    private TableColumn<Container, Integer> badgesColumn;
+
+    @FXML
+    private TableColumn<Container, Integer> productPointsColumn;
+
+    @FXML
+    private TableColumn<Container, String> productNameColumn;
+
+    @FXML
     void onLogButtonClick(ActionEvent event) {
         selectKm.setTextFill(Color.TRANSPARENT);
         selectVehicle.setTextFill(Color.TRANSPARENT);
@@ -111,6 +124,8 @@ public class HelloController implements Initializable, Observer {
                 user.setTotalPoints((user.getTotalPoints() + log.calculatePoints()));
 
                 pointsLeft.setText(String.valueOf(user.getCurrentPoints()));
+                points.setText(String.valueOf(user.getCurrentPoints()));
+                totalPoints.setText(String.valueOf(user.getTotalPoints()));
                 scorelist.refresh();
             } else {
                 selectKm.setTextFill(Color.RED);
@@ -159,6 +174,24 @@ public class HelloController implements Initializable, Observer {
 
         // Fill tables
         loadScorelist();
+        loadProductTable();
+    }
+
+    private void loadProductTable() {
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        productPointsColumn.setCellValueFactory(new PropertyValueFactory<>("pricePoints"));
+        badgesColumn.setCellValueFactory(new PropertyValueFactory<>("priceBadges"));
+
+        storeTable.setItems(Store.getProducts());
+        storeTable.setRowFactory(tv -> {
+            TableRow<Container> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                HelloApplication.container = row.getItem();
+                Stage stage = (Stage) name.getScene().getWindow();
+                HelloApplication.sceneController.loadScreen("store", stage);
+            });
+            return row;
+        });
     }
 
     private void loadScorelist() {
@@ -204,6 +237,6 @@ public class HelloController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        storeTable.refresh();
     }
 }
