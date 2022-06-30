@@ -9,4 +9,5 @@ module com.example.betabit {
     exports com.example.betabit.container;
     exports com.example.betabit.transport;
     exports com.example.betabit.log;
+    exports com.example.betabit.store;
 }
