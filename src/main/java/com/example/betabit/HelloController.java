@@ -1,6 +1,7 @@
 package com.example.betabit;
 
 import com.example.betabit.log.Log;
+import com.example.betabit.store.Store;
 import com.example.betabit.transport.Transport;
 import com.example.betabit.user.User;
 import javafx.collections.FXCollections;
@@ -16,11 +17,21 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class HelloController implements Initializable {
+import static com.example.betabit.HelloApplication.store;
+
+public class HelloController implements Initializable, Observer {
 
     private User user;
+
+    @FXML
+    private Tab adminTab;
+
+    @FXML
+    private Label badges;
 
     @FXML
     private Label badgesLeft;
@@ -41,10 +52,31 @@ public class HelloController implements Initializable {
     private Label nameLeft;
 
     @FXML
+    private Label points;
+
+    @FXML
     private Label pointsLeft;
 
     @FXML
+    private Label position;
+
+    @FXML
     private Pane profileContainer;
+
+    @FXML
+    private Label role;
+
+    @FXML
+    private Label selectKm;
+
+    @FXML
+    private Label selectVehicle;
+
+    @FXML
+    private Label totalBadges;
+
+    @FXML
+    private Label totalPoints;
 
     @FXML
     private TableView<User> scorelist;
@@ -60,15 +92,6 @@ public class HelloController implements Initializable {
 
     @FXML
     private ComboBox<Transport> vehicleDropdown;
-
-    @FXML
-    private Tab adminTab;
-
-    @FXML
-    private Label selectKm;
-
-    @FXML
-    private Label selectVehicle;
 
     @FXML
     void onLogButtonClick(ActionEvent event) {
@@ -105,12 +128,24 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // add observer
+        store.addObserver(this);
+
+        // Set labels
         user = HelloApplication.user;
         name.setText(user.getFullName());
         email.setText(user.getEmail());
         nameLeft.setText(user.getFullName());
+
+        // Set points
         pointsLeft.setText(String.valueOf(user.getCurrentPoints()));
         badgesLeft.setText(String.valueOf(user.getCurrentBadges()));
+        totalPoints.setText(String.valueOf(user.getTotalPoints()));
+        totalBadges.setText(String.valueOf(user.getTotalBadges()));
+        badges.setText(String.valueOf(user.getCurrentBadges()));
+        points.setText(String.valueOf(user.getCurrentPoints()));
+        role.setText(user.getRole());
+        position.setText(String.valueOf(user.getPosition()));
 
         // make vehicle dropdown list from Transport.transports
         ObservableList<Transport> transportList = FXCollections.observableList(Transport.transports);
@@ -167,4 +202,8 @@ public class HelloController implements Initializable {
         HelloApplication.sceneController.loadScreen("login", (Stage) container.getScene().getWindow());
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 }

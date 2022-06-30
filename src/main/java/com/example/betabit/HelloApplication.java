@@ -2,7 +2,9 @@ package com.example.betabit;
 
 import com.example.betabit.container.PictureContainer;
 import com.example.betabit.container.ProfileContainer;
+import com.example.betabit.store.Store;
 import com.example.betabit.transport.Transport;
+import com.example.betabit.transport.TravelPreference;
 import com.example.betabit.user.User;
 import javafx.application.Application;
 import javafx.scene.paint.Color;
@@ -11,6 +13,7 @@ import javafx.stage.Stage;
 public class HelloApplication extends Application {
     public static User user;
     public static SceneController sceneController = new SceneController();
+    public static Store store;
 
     @Override
     public void start(Stage stage) {
@@ -50,7 +53,7 @@ public class HelloApplication extends Application {
         new ProfileContainer(4, "Bild 4", Color.CORAL, 4, 300, 4);
 
         // User list
-        User.users.add(new User("Tim Ohlsen", "timohlsen", "test123", "Admin", 0, 0, 0, 0));
+        User.users.add(new User("Tim Ohlsen", "timohlsen", "test123", "Admin", 60, 60, 0, 0, PictureContainer.pictureContainers.get(3), ProfileContainer.profileContainers.get(2), new TravelPreference(-1, null)));
     }
 
     public static void main(String[] args) {
