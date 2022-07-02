@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 public class HelloApplication extends Application {
     public static User user;
     public static SceneController sceneController = new SceneController();
-    public static Store store = new Store();
     public static Container container;
 
     @Override

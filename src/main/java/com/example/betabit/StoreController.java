@@ -39,10 +39,12 @@ public class StoreController implements Initializable {
     @FXML
     void buy(ActionEvent event) {
         User user = HelloApplication.user;
+        Store store = Store.getInstance();
+
         if(user.getContainers().contains(container)) {
-            HelloApplication.store.enable(container);
+            store.enable(container);
         } else if(user.getCurrentPoints() >= container.getPricePoints() && user.getCurrentBadges() >= container.getPriceBadges()) {
-            HelloApplication.store.buy(container);
+            store.buy(container);
             user.setCurrentPoints(user.getCurrentPoints() - container.getPricePoints());
             user.setCurrentBadges(user.getCurrentBadges() - container.getPriceBadges());
 

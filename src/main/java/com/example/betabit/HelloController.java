@@ -22,8 +22,6 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-import static com.example.betabit.HelloApplication.store;
-
 public class HelloController implements Initializable, Observer {
 
     private User user;
@@ -144,6 +142,7 @@ public class HelloController implements Initializable, Observer {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // add observer
+        Store store = Store.getInstance();
         store.addObserver(this);
 
         // Set labels

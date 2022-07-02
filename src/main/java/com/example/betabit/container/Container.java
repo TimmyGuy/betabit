@@ -1,5 +1,6 @@
 package com.example.betabit.container;
 
+import com.example.betabit.store.Store;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.paint.Color;
@@ -19,6 +20,10 @@ public abstract class Container {
         this.borderWidth = borderWidth;
         this.pricePoints = new SimpleIntegerProperty(pricePoints);
         this.priceBadges = new SimpleIntegerProperty(priceBadges);
+
+        // Add container to store
+        Store store = Store.getInstance();
+        store.addProduct(this);
     }
 
     public int getId() {

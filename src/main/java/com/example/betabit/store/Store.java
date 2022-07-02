@@ -13,6 +13,16 @@ import java.util.Observable;
 public class Store extends Observable {
     private static final ObservableList<Container> products = FXCollections.observableArrayList();
 
+    private static Store instance;
+
+    // Make class singleton
+    public static Store getInstance() {
+        if(instance == null) {
+            instance = new Store();
+        }
+        return instance;
+    }
+
     public static ObservableList<Container> getProducts() {
         // Filter out Containers that are also in user container
         return products;
