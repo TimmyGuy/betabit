@@ -71,9 +71,9 @@ public class RegisterController implements Initializable {
 
     // Regex for email validation
     private static final String EMAIL_REGEX =
-            "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                    "[a-zA-Z0-9_+&*-]+)*@" +
-                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+            "^[a-zA-Z\\d_+&*-]+(?:\\."+
+                    "[a-zA-Z\\d_+&*-]+)*@" +
+                    "(?:[a-zA-Z\\d-]+\\.)+[a-z" +
                     "A-Z]{2,7}$";
 
     // Check email validation
