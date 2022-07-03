@@ -40,17 +40,7 @@ public class StoreController implements Initializable {
     void buy(ActionEvent event) {
         User user = HelloApplication.user;
         Store store = Store.getInstance();
-
-        if(user.getContainers().contains(container)) {
-            store.enable(container);
-        } else if(user.getCurrentPoints() >= container.getPricePoints() && user.getCurrentBadges() >= container.getPriceBadges()) {
-            store.buy(container);
-            user.setCurrentPoints(user.getCurrentPoints() - container.getPricePoints());
-            user.setCurrentBadges(user.getCurrentBadges() - container.getPriceBadges());
-
-            Stage stage = (Stage) name.getScene().getWindow();
-            HelloApplication.sceneController.loadScreen("dashboard", stage);
-        }
+        store.handleTransaction(user, container);
     }
 
     @FXML

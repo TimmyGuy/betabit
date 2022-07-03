@@ -7,6 +7,7 @@ import com.example.betabit.container.ProfileContainer;
 import com.example.betabit.user.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 import java.util.Observable;
 
@@ -38,6 +39,22 @@ public class Store extends Observable {
         products.remove(product);
         setChanged();
         notifyObservers();
+    }
+
+    public boolean handleTransaction(User user, Container container) {
+        Store store = getInstance();
+
+        if(user.getContainers().contains(container)) {
+            store.enable(container);
+            return true;
+        } else if(user.getCurrentPoints() >= container.getPricePoints() && user.getCurrentBadges() >= container.getPriceBadges()) {
+            store.buy(container);
+            user.setCurrentPoints(user.getCurrentPoints() - container.getPricePoints());
+            user.setCurrentBadges(user.getCurrentBadges() - container.getPriceBadges());
+
+            return true;
+        }
+        return false;
     }
 
     public void buy(Container product) {
