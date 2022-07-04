@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LogTest {
 
     @Test
-    void calculatePoints_userSubmitsTypeOfTransportAndAmountOfKilometers_shouldReturnLessPointsIfMoreEmission() {
+    void calculatePoints_userSubmitsTypeOfTransportAndAmountOfKilometers_shouldReturnLessPointsIfMoreEmission() throws Exception {
         // Arrange
         Transport bigEmission = new Transport(1, "Benzine auto", 192);
         Transport mediumEmission = new Transport(3, "Bus (OV)", 89);
@@ -26,22 +26,18 @@ class LogTest {
                 null,
                 null,
                 new TravelPreference(-1, null));
-        Log bigEmissionLog = new Log(1, null, 100, bigEmission);
-        Log mediumEmissionLog = new Log(1, null, 100, mediumEmission);
-        Log noEmissionLog = new Log(1, null, 100, noEmission);
+        Log bigEmissionLog = new Log(1, user, 100, bigEmission);
+        Log mediumEmissionLog = new Log(1, user, 100, mediumEmission);
+        Log noEmissionLog = new Log(1, user, 100, noEmission);
 
         int bigEmissionPoints = 0;
         int mediumEmissionPoints = 0;
         int noEmissionPoints = 0;
 
         // Act
-        try {
-            bigEmissionPoints = bigEmissionLog.calculatePoints();
-            mediumEmissionPoints = mediumEmissionLog.calculatePoints();
-            noEmissionPoints = noEmissionLog.calculatePoints();
-        } catch (Exception e) {
-            fail("Exception thrown");
-        }
+        bigEmissionPoints = bigEmissionLog.calculatePoints();
+        mediumEmissionPoints = mediumEmissionLog.calculatePoints();
+        noEmissionPoints = noEmissionLog.calculatePoints();
 
 
         // Assert
