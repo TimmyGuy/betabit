@@ -55,7 +55,7 @@ public class HelloApplication extends Application {
         new ProfileContainer(4, "Container Coraal", Color.CORAL, 4, 300, 4);
 
         // User list
-        User.users.add(new User("Tim Ohlsen", "timohlsen", "test123", "Admin", 60, 60, 0, 0, PictureContainer.pictureContainers.get(3), ProfileContainer.profileContainers.get(2), new TravelPreference(-1, null)));
+        User.users.add(new User("Tim Ohlsen", "tim.ohlsen2@gmail.com", "test123", "Admin", 60, 60, 0, 0, PictureContainer.pictureContainers.get(3), ProfileContainer.profileContainers.get(2), new TravelPreference(-1, null)));
     }
 
     public static void main(String[] args) {
