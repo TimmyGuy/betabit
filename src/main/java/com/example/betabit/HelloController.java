@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -118,13 +117,16 @@ public class HelloController implements Initializable, Observer {
                 Log log = new Log(Log.logs.size() + 1, user, km, transport);
                 Log.logs.add(log);
 
-                user.setCurrentPoints((user.getCurrentPoints() + log.calculatePoints()));
-                user.setTotalPoints((user.getTotalPoints() + log.calculatePoints()));
-
-                pointsLeft.setText(String.valueOf(user.getCurrentPoints()));
-                points.setText(String.valueOf(user.getCurrentPoints()));
-                totalPoints.setText(String.valueOf(user.getTotalPoints()));
-                scorelist.refresh();
+                try {
+                    user.setCurrentPoints((user.getCurrentPoints() + log.calculatePoints()));
+                    user.setTotalPoints((user.getTotalPoints() + log.calculatePoints()));
+                    pointsLeft.setText(String.valueOf(user.getCurrentPoints()));
+                    points.setText(String.valueOf(user.getCurrentPoints()));
+                    totalPoints.setText(String.valueOf(user.getTotalPoints()));
+                    scorelist.refresh();
+                } catch (Exception e) {
+                    selectKm.setTextFill(Color.RED);
+                }
             } else {
                 selectKm.setTextFill(Color.RED);
             }

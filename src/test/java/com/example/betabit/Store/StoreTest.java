@@ -1,5 +1,6 @@
-package com.example.betabit;
+package com.example.betabit.Store;
 
+import com.example.betabit.HelloApplication;
 import com.example.betabit.container.ProfileContainer;
 import com.example.betabit.store.Store;
 import com.example.betabit.transport.TravelPreference;

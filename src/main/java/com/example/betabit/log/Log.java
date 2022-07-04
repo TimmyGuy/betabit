@@ -54,7 +54,10 @@ public class Log {
         this.transport = transport;
     }
 
-    public int calculatePoints() {
+    public int calculatePoints() throws Exception {
+        if(transport == null) {
+            throw new Exception("No transport selected");
+        }
         double points = 150 - Math.sqrt(getDistance() * transport.getEmission());
         if (points < 0) {
             points = 0;
